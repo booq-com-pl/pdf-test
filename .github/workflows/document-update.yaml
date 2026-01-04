@@ -1,7 +1,12 @@
 name: documents-update
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: "JSON payload (string)"
+        required: true
+        type: string
 
 jobs:
   install-dependencies:
