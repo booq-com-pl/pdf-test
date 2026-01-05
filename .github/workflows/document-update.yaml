@@ -10,7 +10,7 @@ on:
 
 jobs:
   install-dependencies:
-    name: Install Python dependencies
+    name: Create Custom Documents
     runs-on: ubuntu-latest
 
     steps:
@@ -42,8 +42,15 @@ jobs:
 
       - name: Print Received Payload
         run: |
-          echo "Last Name: $(echo '${{ github.event.inputs.payload }}' | jq -r '.lastName')"
-          echo "First Name: $(echo '${{ github.event.inputs.payload }}' | jq -r '.firstName')"
-          echo "Birth Date: $(echo '${{ github.event.inputs.payload }}' | jq -r '.birthDate')"
-          echo "PESEL: $(echo '${{ github.event.inputs.payload }}' | jq -r '.pesel')"
-          echo "Employer Name: $(echo '${{ github.event.inputs.payload }}' | jq -r '.employerName')'"
+            echo "LAST_NAME=$(echo '${{ github.event.inputs.payload }}' | jq -r '.lastName')" >> $GITHUB_ENV
+            echo "FIRST_NAME=$(echo '${{ github.event.inputs.payload }}' | jq -r '.firstName')" >> $GITHUB_ENV
+            echo "BIRTH_DATE=$(echo '${{ github.event.inputs.payload }}' | jq -r '.birthDate')" >> $GITHUB_ENV
+            echo "PESEL=$(echo '${{ github.event.inputs.payload }}' | jq -r '.pesel')" >> $GITHUB_ENV
+            echo "EMPLOYER_NAME=$(echo '${{ github.event.inputs.payload }}' | jq -r '.employerName')" >> $GITHUB_ENV
+
+            echo "Exported environment variables:"
+            echo "LAST_NAME=$LAST_NAME"
+            echo "FIRST_NAME=$FIRST_NAME"
+            echo "BIRTH_DATE=$BIRTH_DATE"
+            echo "PESEL=$PESEL"
+            echo "EMPLOYER_NAME=$EMPLOYER_NAME"
