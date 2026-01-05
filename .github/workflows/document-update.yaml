@@ -38,4 +38,11 @@ jobs:
       - name: Verify installed packages
         run: |
           echo "Installed packages:"
-          pip freeze | sed -n '1,100p'
+                pip freeze | sed -n '1,100p'
+
+                # Separate payload fields
+                echo "Last Name: $(echo '${{ github.event.inputs.payload }}' | jq -r '.lastName')"
+                echo "First Name: $(echo '${{ github.event.inputs.payload }}' | jq -r '.firstName')"
+                echo "Birth Date: $(echo '${{ github.event.inputs.payload }}' | jq -r '.birthDate')
+                echo "PESEL: $(echo '${{ github.event.inputs.payload }}' | jq -r '.pesel')"
+                echo "Employer Name: $(echo '${{ github.event.inputs.payload }}' | jq -r '.employerName')"
