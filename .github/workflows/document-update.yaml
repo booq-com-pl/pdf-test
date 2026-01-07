@@ -50,4 +50,4 @@ jobs:
 
       - name: Run document factory script
         run: |
-          python document_factory.py --payload '${{ github.event.inputs.payload }}'
+          python booq_document_factory.py --payload '${{ github.event.inputs.payload }}'
