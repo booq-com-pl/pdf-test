@@ -135,6 +135,8 @@ def main():
     p.add_argument("file", nargs="?", help="lokalna ścieżka do pliku do uploadu (gdy nie używasz --dir)")
     args = p.parse_args()
 
+    print(f"Arguments: tenant_id={args.tenant_id}, client_id={args.client_id}, hostname={args.hostname}, site_path={args.site_path}, drive_name={args.drive_name}, base_folder={args.base_folder}, acronym={args.acronym}, dir={args.dir}, file={args.file}")
+
     if not args.tenant_id or not args.client_id or not args.client_secret:
         print("Brak TENANT_ID/CLIENT_ID/CLIENT_SECRET (parametry lub zmienne env).", file=sys.stderr)
         sys.exit(2)

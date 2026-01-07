@@ -68,12 +68,12 @@ jobs:
       - name: Upload files to Sharepoint
         run: |
             python booq_sharepoint_upload.py \
-            --hostname "booqpoznan.sharepoint.com" \
-            --site-path "ApplicationDeployment" \
-            --drive-name "Biblioteka dokumentów" \
-            --base-folder "Pracownicy" \
-            --acronym "$(echo '${{ github.event.inputs.payload }}' | jq -r '.userAcronym')" \
-            --tenant-id "${{ secrets.TENANT_ID }}" \
-            --client-id "${{ secrets.CLIENT_ID }}" \
-            --client-secret "${{ secrets.CLIENT_SECRET }}" \
-            --dir "outputfiles/"
+              --hostname "booqpoznan.sharepoint.com" \
+              --site-path "ApplicationDeployment" \
+              --drive-name "Biblioteka dokumentów" \
+              --base-folder "Pracownicy" \
+              --acronym "$(echo '${{ github.event.inputs.payload }}' | jq -r '.userAcronym')" \
+              --tenant-id "${{ secrets.TENANT_ID }}" \
+              --client-id "${{ secrets.CLIENT_ID }}" \
+              --client-secret "${{ secrets.CLIENT_SECRET }}" \
+              --dir "outputfiles/"
