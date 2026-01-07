@@ -133,6 +133,13 @@ def create_docx():
 
 def convert_docx_to_pdf(docx_path: Path, out_dir: Path) -> Path:
     """Convert a .docx file to PDF using headless LibreOffice and return the PDF path."""
+    # Ensure LibreOffice is available
+    if shutil.which("soffice") is None:
+        raise FileNotFoundError(
+            "LibreOffice 'soffice' not found in PATH. Install it in your environment "
+            "(Ubuntu: 'sudo apt-get update && sudo apt-get install -y libreoffice'; "
+            "macOS: 'brew install --cask libreoffice')."
+        )
     out_dir.mkdir(parents=True, exist_ok=True)
     cmd = [
         "soffice",
