@@ -69,7 +69,7 @@ jobs:
         run: |
             python booq_sharepoint_upload.py \
               --hostname "booqpoznan.sharepoint.com" \
-              --site-path "ApplicationDeployment" \
+              --site-path "AplicationDeployment" \
               --drive-name "Biblioteka dokumentów" \
               --base-folder "Pracownicy" \
               --acronym "$(echo '${{ github.event.inputs.payload }}' | jq -r '.userAcronym')" \
