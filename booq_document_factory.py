@@ -1,8 +1,8 @@
-from pypdf import PdfReader
 import json
 import sys
 import argparse
 from pypdf import PdfReader, PdfWriter
+from pypdf.generic import NameObject, BooleanObject
 
 
 def load_payload():
@@ -59,6 +59,22 @@ def create_pit2():
 
     writer = PdfWriter()
     writer.add_page(reader.pages[0])
+
+    # Copy AcroForm from source PDF if present so the writer has a form dictionary.
+    try:
+        root = reader.trailer["/Root"]
+        if "/AcroForm" in root:
+            writer._root_object.update({NameObject("/AcroForm"): root["/AcroForm"]})
+
+            # Some viewers need NeedAppearances to be true to show updated values.
+            try:
+                writer._root_object["/AcroForm"].update({NameObject("/NeedAppearances"): BooleanObject(True)})
+            except Exception:
+                # Non-fatal if we can't set NeedAppearances
+                pass
+    except Exception as e:
+        print(f"Warning: couldn't copy AcroForm from source PDF: {e}")
+
     writer.update_page_form_field_values(writer.pages[0], fields)
     with open(artifact_name, "wb") as output_pdf:
         writer.write(output_pdf)
