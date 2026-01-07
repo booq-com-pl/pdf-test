@@ -200,3 +200,4 @@ def render_docx_and_convert(template_path: Path, payload: dict, output_path: Pat
 
 
 create_pit2()
+create_docx()
