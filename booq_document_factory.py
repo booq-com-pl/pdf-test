@@ -127,9 +127,6 @@ def create_docx():
         print(f"Error creating DOCX/PDF: {e}")
 
 
-    # After generating the PIT2 PDF, also render the DOCX and convert it to PDF
-    create_docx()
-
 
 def convert_docx_to_pdf(docx_path: Path, out_dir: Path) -> Path:
     """Convert a .docx file to PDF using headless LibreOffice and return the PDF path."""
@@ -207,4 +204,7 @@ def render_docx_and_convert(template_path: Path, payload: dict, output_path: Pat
 
 
 create_pit2()
+
+# After generating the PIT2 PDF, also render the DOCX and convert it to PDF
+create_docx()
 create_docx()
