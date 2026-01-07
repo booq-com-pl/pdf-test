@@ -3,5 +3,6 @@
     "firstName": "Jan",
     "birthDate": "1985-03-15",
     "pesel": "85031512345",
-    "employerName": "ABC Corporation"
+    "employerName": "ABC Corporation",
+    "userAcronym": "JKowalski"
 }
